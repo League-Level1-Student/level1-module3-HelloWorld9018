@@ -5,6 +5,7 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +13,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,15 +24,34 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
+JFrame window = new JFrame();
+JPanel panel = new JPanel();
+JButton album1 = new JButton();
+JButton album2 = new JButton();
+JButton album3 = new JButton();
 
+window.add(panel);
+panel.add(album1);
+panel.add(album2);
+panel.add(album3);
+album1.addActionListener(this);
+album2.addActionListener(this);
+album3.addActionListener(this);
 		// 3. Play the Song
 
+Song music = new Song("The-Jazz-Man.mp3");
+music.play();
+
+
+loadImage("Jazz.jpg");
+loadImage("Forest.jpg");
+loadImage("Techno.jpg");
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
